@@ -121,4 +121,104 @@
     return reverseImage;
 }
 
+/**
+* @brief セピアフィルタ
+* @param image フィルタをかける画像
+* @param intensity フィルタをどれくらいかけるか (デフォルト値: 1.0, 範囲: 0.0〜1.0)
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterSepia:(UIImage *)image WithIntensity:(CGFloat)intensity
+{
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *ciFilter = [CIFilter filterWithName:@"CISepiaTone"
+                                    keysAndValues:kCIInputImageKey, ciImage,
+                                    @"inputIntensity", [NSNumber numberWithFloat:intensity],
+                                    nil];
+
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
+    UIImage *filterImage = [UIImage imageWithCGImage:cgImage scale:1.0f orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
+    return filterImage;
+}
+
+/**
+* @brief グレースケールフィルタ
+* @param image フィルタをかける画像
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterGrayScale:(UIImage *)image
+{
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *ciFilter = [CIFilter filterWithName:@"CIColorMonochrome"
+                                    keysAndValues:kCIInputImageKey, ciImage,
+                                    @"inputColor", [CIColor colorWithRed:0.75 green:0.75 blue:0.75],
+                                    @"inputIntensity", [NSNumber numberWithFloat:1.0],
+                                    nil];
+    
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
+    UIImage *filterImage = [UIImage imageWithCGImage:cgImage scale:1.0f orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
+    return filterImage;
+}
+
+/**
+* @brief 色調整フィルタ
+* @param image フィルタをかける画像
+* @param s 彩度 (デフォルト値: 1.0f, 範囲: 0.0〜3.0)
+* @param b 輝度 (デフォルト値: 0.0f, 範囲: -1.0〜1.0)
+* @param c コントラスト (デフォルト値: 1.0f, 範囲: 0.25〜4.0)
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterColorAdjustment:(UIImage *)image WithSaturation:(CGFloat)s
+                                                             Brightness:(CGFloat)b
+                                                               Contrast:(CGFloat)c
+{
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *ciFilter = [CIFilter filterWithName:@"CIColorControls"
+                                    keysAndValues:kCIInputImageKey, ciImage,
+                                    @"inputSaturation", [NSNumber numberWithFloat:s],
+                                    @"inputBrightness", [NSNumber numberWithFloat:b],
+                                    @"inputContrast", [NSNumber numberWithFloat:c],
+                                    nil];
+    
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
+    UIImage *filterImage = [UIImage imageWithCGImage:cgImage scale:1.0f orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
+    return filterImage;
+}
+
+/**
+* @brief トーンカーブフィルタ
+* @param image   フィルタをかける画像
+* @param vectors トーンカーブのポイント (CIVectorが5つ入った配列)
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterToneCurve:(UIImage *)image WithVectors:(NSArray *)vectors
+{
+    CIVector *vec0 = (CIVector *)[vectors objectAtIndex:0];
+    CIVector *vec1 = (CIVector *)[vectors objectAtIndex:1];
+    CIVector *vec2 = (CIVector *)[vectors objectAtIndex:2];
+    CIVector *vec3 = (CIVector *)[vectors objectAtIndex:3];
+    CIVector *vec4 = (CIVector *)[vectors objectAtIndex:4];
+
+    CIImage *ciImage = [[CIImage alloc] initWithImage:image];
+    CIFilter *ciFilter = [CIFilter filterWithName:@"CIToneCurve"
+                                    keysAndValues:kCIInputImageKey, ciImage,
+                                    @"inputPoint0", vec0,
+                                    @"inputPoint1", vec1,
+                                    @"inputPoint2", vec2,
+                                    @"inputPoint3", vec3,
+                                    @"inputPoint4", vec4,
+                                    nil];
+    
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:[ciFilter outputImage] fromRect:[[ciFilter outputImage] extent]];
+    UIImage *filterImage = [UIImage imageWithCGImage:cgImage scale:1.0f orientation:UIImageOrientationUp];
+    CGImageRelease(cgImage);
+    return filterImage;
+}
+
 @end

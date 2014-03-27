@@ -10,6 +10,10 @@
 
 @interface TTKEditImage : NSObject
 
+/**********************************************
+* 画像加工関連
+**********************************************/
+
 /**
 * @brief Viewから画像を取得する
 * @param view 画像を取得したいView
@@ -40,5 +44,44 @@
 * @return 反転させた画像
 */
 + (UIImage *)reverseImage:(UIImage *)image;
+
+/**********************************************
+* フィルタ関連
+**********************************************/
+
+/**
+* @brief セピアフィルタ
+* @param image フィルタをかける画像
+* @param intensity フィルタをどれくらいかけるか (デフォルト値: 1.0, 範囲: 0.0〜1.0)
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterSepia:(UIImage *)image WithIntensity:(CGFloat)intensity;
+
+/**
+* @brief グレースケールフィルタ
+* @param image フィルタをかける画像
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterGrayScale:(UIImage *)image;
+
+/**
+* @brief 色調整フィルタ
+* @param image フィルタをかける画像
+* @param s 彩度 (デフォルト値: 1.0, 範囲: 0.0〜3.0)
+* @param b 輝度 (デフォルト値: 0.0, 範囲: -1.0〜1.0)
+* @param c コントラスト (デフォルト値: 1.0, 範囲: 0.25〜4.0)
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterColorAdjustment:(UIImage *)image WithSaturation:(CGFloat)s
+                                                             Brightness:(CGFloat)b
+                                                               Contrast:(CGFloat)c;
+
+/**
+* @brief トーンカーブフィルタ
+* @param image   フィルタをかける画像
+* @param vectors トーンカーブのポイント (CIVectorが5つ入った配列)
+* @return フィルタがかかった画像
+*/
++ (UIImage *)imageFilterToneCurve:(UIImage *)image WithVectors:(NSArray *)vectors;
 
 @end
