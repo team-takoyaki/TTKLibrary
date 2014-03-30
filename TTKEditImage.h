@@ -55,14 +55,14 @@
 * @param intensity フィルタをどれくらいかけるか (デフォルト値: 1.0, 範囲: 0.0〜1.0)
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterSepia:(UIImage *)image WithIntensity:(CGFloat)intensity;
++ (UIImage *)imageFilterSepia:(UIImage *)image withIntensity:(CGFloat)intensity;
 
 /**
 * @brief グレースケールフィルタ
 * @param image フィルタをかける画像
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterGrayScale:(UIImage *)image;
++ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity;
 
 /**
 * @brief 色調整フィルタ
