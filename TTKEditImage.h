@@ -72,7 +72,7 @@
 * @param c コントラスト (デフォルト値: 1.0, 範囲: 0.25〜4.0)
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterColorAdjustment:(UIImage *)image WithSaturation:(CGFloat)s
++ (UIImage *)imageFilterColorAdjustment:(UIImage *)image withSaturation:(CGFloat)s
                                                              Brightness:(CGFloat)b
                                                                Contrast:(CGFloat)c;
 
@@ -82,6 +82,6 @@
 * @param vectors トーンカーブのポイント (CIVectorが5つ入った配列)
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterToneCurve:(UIImage *)image WithVectors:(NSArray *)vectors;
++ (UIImage *)imageFilterToneCurve:(UIImage *)image withVectors:(NSArray *)vectors;
 
 @end

@@ -145,6 +145,7 @@
 /**
 * @brief グレースケールフィルタ
 * @param image フィルタをかける画像
+* @param itensity フィルタをどれくらいかけるか (デフォルト値: 1.0, 範囲: 0.0〜1.0)
 * @return フィルタがかかった画像
 */
 + (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity
@@ -171,7 +172,7 @@
 * @param c コントラスト (デフォルト値: 1.0f, 範囲: 0.25〜4.0)
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterColorAdjustment:(UIImage *)image WithSaturation:(CGFloat)s
++ (UIImage *)imageFilterColorAdjustment:(UIImage *)image withSaturation:(CGFloat)s
                                                              Brightness:(CGFloat)b
                                                                Contrast:(CGFloat)c
 {
@@ -196,7 +197,7 @@
 * @param vectors トーンカーブのポイント (CIVectorが5つ入った配列)
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterToneCurve:(UIImage *)image WithVectors:(NSArray *)vectors
++ (UIImage *)imageFilterToneCurve:(UIImage *)image withVectors:(NSArray *)vectors
 {
     CIVector *vec0 = (CIVector *)[vectors objectAtIndex:0];
     CIVector *vec1 = (CIVector *)[vectors objectAtIndex:1];
