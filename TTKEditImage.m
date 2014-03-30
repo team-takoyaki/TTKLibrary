@@ -146,14 +146,15 @@
 * @brief グレースケールフィルタ
 * @param image フィルタをかける画像
 * @param itensity フィルタをどれくらいかけるか (デフォルト値: 1.0, 範囲: 0.0〜1.0)
+* @param rate 単色の割合
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity
++ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity andSingleColorRate:(CGFloat)rate
 {
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIFilter *ciFilter = [CIFilter filterWithName:@"CIColorMonochrome"
                                     keysAndValues:kCIInputImageKey, ciImage,
-                                    @"inputColor", [CIColor colorWithRed:0.75 green:0.75 blue:0.75],
+                                    @"inputColor", [CIColor colorWithRed:rate green:rate blue:rate],
                                     @"inputIntensity", [NSNumber numberWithFloat:intensity],
                                     nil];
     

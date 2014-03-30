@@ -47,6 +47,7 @@
 
 /**********************************************
 * フィルタ関連
+* ドキュメント: https://developer.apple.com/jp/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_filters/chapter_5_section_1.html
 **********************************************/
 
 /**
@@ -60,9 +61,10 @@
 /**
 * @brief グレースケールフィルタ
 * @param image フィルタをかける画像
+* @param rate 単色の割合
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity;
++ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity andSingleColorRate:(CGFloat)rate;
 
 /**
 * @brief 色調整フィルタ
