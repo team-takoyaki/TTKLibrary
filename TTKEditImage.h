@@ -64,7 +64,7 @@
 * @param rate 単色の割合
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity andSingleColorRate:(CGFloat)rate;
++ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity singleColorRate:(CGFloat)rate;
 
 /**
 * @brief 色調整フィルタ
@@ -75,8 +75,8 @@
 * @return フィルタがかかった画像
 */
 + (UIImage *)imageFilterColorAdjustment:(UIImage *)image withSaturation:(CGFloat)s
-                                                             Brightness:(CGFloat)b
-                                                               Contrast:(CGFloat)c;
+                                                             brightness:(CGFloat)b
+                                                               contrast:(CGFloat)c;
 
 /**
 * @brief トーンカーブフィルタ

@@ -149,7 +149,7 @@
 * @param rate 単色の割合
 * @return フィルタがかかった画像
 */
-+ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity andSingleColorRate:(CGFloat)rate
++ (UIImage *)imageFilterGrayScale:(UIImage *)image withIntensity:(CGFloat)intensity singleColorRate:(CGFloat)rate
 {
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIFilter *ciFilter = [CIFilter filterWithName:@"CIColorMonochrome"
@@ -174,8 +174,8 @@
 * @return フィルタがかかった画像
 */
 + (UIImage *)imageFilterColorAdjustment:(UIImage *)image withSaturation:(CGFloat)s
-                                                             Brightness:(CGFloat)b
-                                                               Contrast:(CGFloat)c
+                                                             brightness:(CGFloat)b
+                                                               contrast:(CGFloat)c
 {
     CIImage *ciImage = [[CIImage alloc] initWithImage:image];
     CIFilter *ciFilter = [CIFilter filterWithName:@"CIColorControls"
