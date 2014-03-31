@@ -196,6 +196,11 @@
 * @brief トーンカーブフィルタ
 * @param image   フィルタをかける画像
 * @param vectors トーンカーブのポイント (CIVectorが5つ入った配列)
+*                inputPoint 0: デフォルト値 (0, 0)
+*                inputPoint 1: デフォルト値 (0.25, 0.25)
+*                inputPoint 2: デフォルト値 (0.5, 0.5)
+*                inputPoint 3: デフォルト値 (0.75, 0.75)
+*                inputPoint 4: デフォルト値 (1, 1)
 * @return フィルタがかかった画像
 */
 + (UIImage *)imageFilterToneCurve:(UIImage *)image withVectors:(NSArray *)vectors
